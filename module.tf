@@ -5,8 +5,8 @@ resource "azurerm_private_endpoint" "pe" {
   subnet_id = var.subnets[var.private_endpoint.subnet_name].id
 
   dynamic "private_dns_zone_group" {
-    for_each = try(var.private_endpoint.local_dns_zone, false) != false ? [1] : []
-    content {
+    for_each = try(var.private_endpoint.local_dns_zone, [])
+      content {
       name = var.private_endpoint.local_dns_zone.name
       private_dns_zone_ids = [module.private_dns_zone[0].private_dns_zone_id]
     }
@@ -22,7 +22,7 @@ resource "azurerm_private_endpoint" "pe" {
   tags = var.tags
 
   lifecycle {
-    ignore_changes = [ tags, ]
+    ignore_changes = [ tags, private_dns_zone_group ]
   }
 }
 
@@ -32,6 +32,6 @@ module "private_dns_zone" {
 
   private_dns_zone = var.private_endpoint.local_dns_zone
   resource_groups = var.resource_group
-  subnets = var.subnets
+  subnet_id = azurerm_private_endpoint.pe.subnet_id
   tags = var.tags
 }
