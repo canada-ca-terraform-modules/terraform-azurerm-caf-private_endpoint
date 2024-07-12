@@ -9,7 +9,7 @@ variable "name" {
   type = string
 }
 
-variable "resource_group" {
+variable "resource_groups" {
   description = "(Required) Resource group object of private endpoint"
   type = any
 }
@@ -28,6 +28,11 @@ variable "subnets" {
 variable "private_connection_resource_id" {
   description = "(Required) The ID of the resource the private endpoint will be connected to"
   type = string
+}
+
+variable "private_dns_zone_id" {
+  type = string
+  default = null
 }
 
 variable "private_endpoint" {
