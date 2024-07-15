@@ -2,7 +2,7 @@ resource "azurerm_private_endpoint" "pe" {
   name = "${var.name}-pe"
   location = var.location
   resource_group_name = local.resource_group_name
-  subnet_id = var.subnets[var.private_endpoint.subnet_name].id
+  subnet_id = local.subnet_name
 
   dynamic "private_dns_zone_group" {
     for_each = try(var.private_endpoint.local_dns_zone, false) != false ? [1] : []
@@ -14,7 +14,7 @@ resource "azurerm_private_endpoint" "pe" {
 
   private_service_connection {
     name = "${var.name}-con"
-    is_manual_connection = false
+    is_manual_connection = try(var.private_endpoint.is_manual_connection, false)
     private_connection_resource_id = var.private_connection_resource_id
     subresource_names = var.private_endpoint.subresource_names
   }
