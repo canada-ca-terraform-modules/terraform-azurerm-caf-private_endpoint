@@ -30,8 +30,8 @@ variable "private_connection_resource_id" {
   type = string
 }
 
-variable "private_dns_zone_id" {
-  type = string
+variable "private_dns_zone_ids" {
+  type = any
   default = null
 }
 

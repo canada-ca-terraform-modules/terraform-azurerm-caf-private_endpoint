@@ -7,8 +7,8 @@ resource "azurerm_private_endpoint" "pe" {
   dynamic "private_dns_zone_group" {
     for_each = try(var.private_endpoint.local_dns_zone, false) != false ? [1] : []
       content {
-      name = var.private_endpoint.local_dns_zone
-      private_dns_zone_ids = [var.private_dns_zone_id]
+      name = local.private_dns_zone_name
+      private_dns_zone_ids = [local.private_dns_zone_id]
     }
   }
 
@@ -25,13 +25,3 @@ resource "azurerm_private_endpoint" "pe" {
     ignore_changes = [ tags, private_dns_zone_group ]
   }
 }
-
-# module "private_dns_zone" {
-#   source = "/home/max/devops/modules/terraform-azurerm-caf-private_dns_zone"
-#   count = try(var.private_endpoint.local_dns_zone, false) != false ? 1 : 0
-
-#   private_dns_zone = var.private_endpoint.local_dns_zone
-#   resource_groups = var.resource_groups
-#   subnet_id = azurerm_private_endpoint.pe.subnet_id
-#   tags = var.tags
-# }
