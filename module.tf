@@ -2,7 +2,7 @@ resource "azurerm_private_endpoint" "pe" {
   name = "${var.name}-pe"
   location = var.location
   resource_group_name = local.resource_group_name
-  subnet_id = local.subnet_name
+  subnet_id = local.subnet_id
 
   dynamic "private_dns_zone_group" {
     for_each = try(var.private_endpoint.local_dns_zone, false) != false ? [1] : []
