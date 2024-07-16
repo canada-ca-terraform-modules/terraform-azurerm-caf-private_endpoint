@@ -41,7 +41,7 @@ No modules.
 
 ## TFVars Parameters
 
-For more information about storage account parameters, refer to the terraform docs: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_endpoint
+For more information about private endpoint parameters, refer to the terraform docs: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_endpoint
 | Name | Possible values | Default | Required |
 |------|----------|----------------|---------|
 | <a name="resource_group"></a> [resource_group](#resource\_group) | Resource group name, i.e Project, Managment, DNS, etc, or resource group ID | n/a | yes |
