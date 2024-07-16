@@ -20,7 +20,7 @@ resource "azurerm_private_endpoint" "pe" {
     subresource_names = var.private_endpoint.subresource_names
   }
 
-  tags = var.tags
+  tags = merge(var.tags, try(var.private_endpoint.tags, {}))
 
   # Private DNS zone group is included in ignore_changes to not conflict when policies deploy the DNS config for a PE
   lifecycle {
