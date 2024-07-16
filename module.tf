@@ -4,6 +4,7 @@ resource "azurerm_private_endpoint" "pe" {
   resource_group_name = local.resource_group_name
   subnet_id = local.subnet_id
 
+  # Private DNS zone group might not be set depending on use case
   dynamic "private_dns_zone_group" {
     for_each = try(var.private_endpoint.local_dns_zone, false) != false ? [1] : []
       content {
@@ -21,6 +22,7 @@ resource "azurerm_private_endpoint" "pe" {
 
   tags = var.tags
 
+  # Private DNS zone group is included in ignore_changes to not conflict when policies deploy the DNS config for a PE
   lifecycle {
     ignore_changes = [ tags, private_dns_zone_group ]
   }

@@ -12,6 +12,7 @@ variable "name" {
 variable "resource_groups" {
   description = "(Required) Resource group object of private endpoint"
   type = any
+  default = {}
 }
 
 variable "location" {
@@ -23,6 +24,7 @@ variable "location" {
 variable "subnets" {
   description = "(Required) Map of subnets"
   type = any
+  default = {}
 }
 
 variable "private_connection_resource_id" {
@@ -33,7 +35,7 @@ variable "private_connection_resource_id" {
 variable "private_dns_zone_ids" {
   description = "List of private DNS zone ids"
   type = any
-  default = null
+  default = {}
 }
 
 variable "private_endpoint" {
