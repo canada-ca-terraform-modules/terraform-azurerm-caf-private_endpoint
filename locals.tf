@@ -8,8 +8,8 @@ locals {
   subnet_id = strcontains(var.private_endpoint.subnet, "/resourceGroups/") ? var.private_endpoint.subnet : var.subnets[var.private_endpoint.subnet].id
 
   # Same logic as subnet ID
-  private_dns_zone_id = strcontains(var.private_endpoint.local_dns_zone, "/resourceGroups/") ?  var.private_endpoint.local_dns_zone : var.private_dns_zone_ids[var.private_endpoint.local_dns_zone]
+  private_dns_zone_id = try(strcontains(var.private_endpoint.local_dns_zone, "/resourceGroups/") ?  var.private_endpoint.local_dns_zone : var.private_dns_zone_ids[var.private_endpoint.local_dns_zone], "")
 
   #Same logic as resource_group_name
-  private_dns_zone_name = strcontains(var.private_endpoint.local_dns_zone, "/resourceGroups/") ? regex("[^\\/]+$", var.private_endpoint.local_dns_zone) : var.private_endpoint.local_dns_zone
+  private_dns_zone_name = try(strcontains(var.private_endpoint.local_dns_zone, "/resourceGroups/") ? regex("[^\\/]+$", var.private_endpoint.local_dns_zone) : var.private_endpoint.local_dns_zone,"")
 }
