@@ -24,6 +24,6 @@ resource "azurerm_private_endpoint" "pe" {
 
   # Private DNS zone group is included in ignore_changes to not conflict when policies deploy the DNS config for a PE
   lifecycle {
-    ignore_changes = [ tags, private_dns_zone_group ]
+    ignore_changes = [ private_dns_zone_group ]
   }
 }
