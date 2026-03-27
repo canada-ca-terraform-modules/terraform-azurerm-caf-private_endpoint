@@ -83,22 +83,22 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_custom_network_interface_name"></a> [custom\_network\_interface\_name](#input\_custom\_network\_interface\_name) | (Optional) The custom name of the network interface attached to the private endpoint. Changing this forces a new resource to be created. | `string` | `null` | no |
+| <a name="input_ip_configuration"></a> [ip\_configuration](#input\_ip\_configuration) | (Optional) One or more ip\_configuration blocks to set static IP addresses for the private endpoint. Each block requires: name, private\_ip\_address; optional: subresource\_name, member\_name. | `any` | `[]` | no |
+| <a name="input_location"></a> [location](#input\_location) | Azure location where the private endpoint will be located | `any` | `"canadacentral"` | no |
 | <a name="input_name"></a> [name](#input\_name) | (Required) Name of the private endpoint | `string` | n/a | yes |
 | <a name="input_private_connection_resource_id"></a> [private\_connection\_resource\_id](#input\_private\_connection\_resource\_id) | (Required) The ID of the resource the private endpoint will be connected to | `string` | n/a | yes |
+| <a name="input_private_dns_zone_ids"></a> [private\_dns\_zone\_ids](#input\_private\_dns\_zone\_ids) | List of private DNS zone ids | `any` | `{}` | no |
+| <a name="input_private_endpoint"></a> [private\_endpoint](#input\_private\_endpoint) | (Required) Private endpoint object | `any` | `{}` | no |
 | <a name="input_resource_groups"></a> [resource\_groups](#input\_resource\_groups) | (Required) Resource group object of private endpoint | `any` | `{}` | no |
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | (Required) Map of subnets | `any` | `{}` | no |
-| <a name="input_private_endpoint"></a> [private\_endpoint](#input\_private\_endpoint) | (Required) Private endpoint configuration object | `any` | `{}` | no |
-| <a name="input_private_dns_zone_ids"></a> [private\_dns\_zone\_ids](#input\_private\_dns\_zone\_ids) | List of private DNS zone ids | `any` | `{}` | no |
-| <a name="input_location"></a> [location](#input\_location) | Azure location where the private endpoint will be located | `any` | `"canadacentral"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to be applied to the private endpoint | `map(string)` | `{}` | no |
-| <a name="input_custom_network_interface_name"></a> [custom\_network\_interface\_name](#input\_custom\_network\_interface\_name) | (Optional) Custom NIC name for the private endpoint. Changing this forces a new resource. | `string` | `null` | no |
-| <a name="input_ip_configuration"></a> [ip\_configuration](#input\_ip\_configuration) | (Optional) One or more ip\_configuration blocks for static IP assignment. | `any` | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_private-endpoint-object"></a> [private-endpoint-object](#output\_private-endpoint-object) | Returns the Private Endpoint object |
 | <a name="output_id"></a> [id](#output\_id) | Returns the ID of the private endpoint |
 | <a name="output_name"></a> [name](#output\_name) | Returns the name of the private endpoint |
+| <a name="output_private-endpoint-object"></a> [private-endpoint-object](#output\_private-endpoint-object) | Returns the Private Endpoint object |
 <!-- END_TF_DOCS -->
