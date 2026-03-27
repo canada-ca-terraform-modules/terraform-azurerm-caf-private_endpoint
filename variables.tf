@@ -28,8 +28,10 @@ variable "subnets" {
 }
 
 variable "private_connection_resource_id" {
-  description = "(Required) The ID of the resource the private endpoint will be connected to"
+  description = "(Optional) The ID of the resource the private endpoint will be connected to. Required unless private_connection_resource_alias is set in the private_endpoint object."
   type        = string
+  default     = null
+  nullable    = true
 }
 
 variable "private_dns_zone_ids" {

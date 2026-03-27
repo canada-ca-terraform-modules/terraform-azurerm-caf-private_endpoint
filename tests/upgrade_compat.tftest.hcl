@@ -28,22 +28,16 @@ run "baseline_apply" {
   }
 }
 
-# Step 2: plan the upgraded code against that state — must show no replacements
+# Step 2: plan the upgraded code against that state using only additive/non-destructive args.
+# Note: custom_network_interface_name and ip_configuration are NOT included here because
+# adding them to an existing resource forces replacement — they must be set at creation time.
 run "upgrade_plan_no_replacement" {
   command = plan
   variables {
     private_endpoint = {
-      resource_group                = "rg-test"
-      subnet                        = "OZ"
-      subresource_names             = ["blob"]
-      custom_network_interface_name = "myapp-pe-nic"
-      ip_configuration = [
-        {
-          name               = "static-ip-1"
-          private_ip_address = "10.0.2.10"
-          subresource_name   = "blob"
-        }
-      ]
+      resource_group    = "rg-test"
+      subnet            = "OZ"
+      subresource_names = ["blob"]
     }
   }
   assert {
