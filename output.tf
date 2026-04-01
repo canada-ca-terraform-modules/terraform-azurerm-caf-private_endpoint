@@ -1,14 +1,15 @@
 output "private-endpoint-object" {
   description = "Returns the Private Endpoint object"
-  value = azurerm_private_endpoint.pe
+  value       = azurerm_private_endpoint.pe
+  sensitive   = true
 }
 
 output "id" {
   description = "Returns the ID of the private endpoint"
-  value = azurerm_private_endpoint.pe.id
+  value       = azurerm_private_endpoint.pe.id
 }
 
 output "name" {
   description = "Returns the name of the private endpoint"
-  value = azurerm_private_endpoint.pe
+  value       = azurerm_private_endpoint.pe.name
 }
