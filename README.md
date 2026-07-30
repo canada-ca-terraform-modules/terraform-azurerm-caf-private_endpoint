@@ -8,7 +8,7 @@ Creates an Azure Private Endpoint using the ESLZ CAF pattern, supporting DNS zon
 
 ```hcl
 module "private_endpoint" {
-  source   = "github.com/ssc-spc-ccoe-cei/terraform-azurerm-caf-private_endpoint?ref=v1.1.0"
+  source   = "github.com/ssc-spc-ccoe-cei/terraform-azurerm-caf-private_endpoint?ref=v1.2.0"
   for_each = var.private_endpoint
 
   name                           = each.key
@@ -40,7 +40,7 @@ private_endpoint = {
 }
 ```
 
-## New arguments (azurerm >= 4.x)
+## New arguments (azurerm >= 4.x / 5.x)
 
 | Key (in `private_endpoint` object) | Type | Description |
 |---|---|---|
@@ -61,13 +61,13 @@ terraform fmt -recursive && terraform init -backend=false && terraform validate 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 4.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~> 4.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~> 5.0 |
 
 ## Modules
 

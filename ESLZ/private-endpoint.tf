@@ -45,7 +45,7 @@ variable "tags" {
 }
 
 module "private_endpoint" {
-  source   = "github.com/ssc-spc-ccoe-cei/terraform-azurerm-caf-private_endpoint?ref=v1.1.0"
+  source   = "github.com/ssc-spc-ccoe-cei/terraform-azurerm-caf-private_endpoint?ref=v1.2.0"
   for_each = var.private_endpoint
 
   name                           = each.key
