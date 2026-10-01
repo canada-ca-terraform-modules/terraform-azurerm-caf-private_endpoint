@@ -156,3 +156,20 @@ run "subnet_provided_as_id" {
     error_message = "subnet_id must be used as-is when provided as a full resource ID"
   }
 }
+
+run "with_null_local_dns_zone" {
+  command = plan
+  variables {
+    private_dns_zone_ids = {}
+    private_endpoint = {
+      resource_group    = "rg-test"
+      subnet            = "OZ"
+      subresource_names = ["blob"]
+      local_dns_zone    = null
+    }
+  }
+  assert {
+    condition     = length(azurerm_private_endpoint.pe.private_dns_zone_group) == 0
+    error_message = "private_dns_zone_group must not be set when local_dns_zone is null"
+  }
+}
