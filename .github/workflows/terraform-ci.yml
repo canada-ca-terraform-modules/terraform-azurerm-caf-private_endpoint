@@ -1,46 +1,41 @@
-name: terraform-ci
-
+name: Terraform CI
 on:
-  pull_request:
-    branches:
-      - main
   push:
-    branches:
-      - main
-
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
 jobs:
-  validate:
+  terraform:
+    name: Terraform Validate & Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7.0.1
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
 
-      - uses: hashicorp/setup-terraform@v4.0.1
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v4.0.1
         with:
-          terraform_version: "~> 1.9"
+          terraform_version: "~>1.9"
 
-      - name: terraform fmt
-        run: terraform fmt -recursive -check
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v6.3.0
+        with:
+          tflint_version: "v0.64.0"
 
-      - name: terraform init
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Init
         run: terraform init -backend=false
 
-      - name: terraform validate
+      - name: Terraform Validate
         run: terraform validate
 
-      - name: terraform test
+      - name: Terraform Test
         run: terraform test
 
-  tflint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7.0.1
-
-      - name: install tflint
-        run: |
-          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-
-      - name: tflint init
+      - name: TFLint Init
         run: tflint --init
 
-      - name: tflint
+      - name: TFLint
         run: tflint --recursive
