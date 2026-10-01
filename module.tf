@@ -7,7 +7,7 @@ resource "azurerm_private_endpoint" "pe" {
 
   # Private DNS zone group might not be set depending on use case
   dynamic "private_dns_zone_group" {
-    for_each = try(var.private_endpoint.local_dns_zone, false) != false ? [1] : []
+    for_each = try(var.private_endpoint.local_dns_zone, null) != null ? [1] : []
     content {
       name                 = local.private_dns_zone_name
       private_dns_zone_ids = [local.private_dns_zone_id]
